@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+*{
+    box-sizing: border-box;
+}
+
+html, body{
+    min-height: 100%;
+    margin: 0;
+    font-family: 'Poppins', sans-serif!important;
+}
+
+.page{
+    min-height: 100%;
+    display: flex;
+    padding: 0 25%;
+    flex-direction: column;
+    row-gap: 50px;
+    padding-bottom: 50px;
+}
+
+.pokelist{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    row-gap: 50px;
+}
+
+.pokelist-i{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+}
+
+#pokeimg{
+    image-rendering: pixelated;
+    height: 250px;
+}
+
+#pokename{
+    font-size: 18pt;
+    padding: 5px 0;
+}
+
+.modelo{
+    display: none!important;
+}
+
+#loader {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
+   
+  .skeleton-card {
+    height: 277px;
+    width: 255px;
+    margin: 8px;
+    border-radius: 3px;
+    transition: all 200ms ease-in-out;
+    position: relative;
+    background-color: #eaeaea;
+    border-radius: 10px;
+  }
+   
+  .skeleton-card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-100%);
+    background-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 0.2) 20%, rgba(255, 255, 255, 0.5) 60%, rgba(255, 255, 255, 0));
+    animation: load 1s infinite;
+  }
+   
+  @keyframes load {
+    100% {
+      transform: translateX(100%);
+    }
+  }
