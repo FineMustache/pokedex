@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,14 +10,18 @@
 <body>
     <div class="page">
         <div id="pokelist" class="pokelist">
-            <div class="pokelist-i modelo">
-                <img class="pokeimg" id="pokeimg" src="./placeholder.png" alt="">
-                <span id="pokename">Bubanaro</span>
+            <div class="pokelist-i modelo" onclick="flip(this)">
+                <div class="face">
+                    <img class="pokeimg" id="pokeimg" src="./placeholder.png" alt="">
+                    <span id="pokename">Bubanaro</span>
+                </div>
+                <div class="back">
+                    <span>AAAAAAAAAAA</span>
+                </div>
+                
             </div>
         </div>
         <div id="loader">
-            <div class="skeleton-card"></div>
-            <div class="skeleton-card"></div>
             <div class="skeleton-card"></div>
           </div>
     </div>

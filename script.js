@@ -82,10 +82,13 @@ const createCard = (index, pokemon) => {
     fetch(pokemon.url)
     .then(result => result.json())
     .then(info => {
-        card.querySelector('img').src = info.sprites.front_default
-        card.style.backgroundColor = getBgColor(info.types[0].type.name);
-        card.style.border = `2px solid ${getBgColor(info.types[0].type.name)}`
-        card.style.boxShadow = `0 0 10px ${getBgColor(info.types[0].type.name)}`
+        card.querySelector('.face').querySelector('img').src = info.sprites.front_default
+        card.querySelector('.face').style.backgroundColor = getBgColor(info.types[0].type.name);
+        card.querySelector('.face').style.border = `2px solid ${getBgColor(info.types[0].type.name)}`
+        card.querySelector('.face').style.boxShadow = `0 0 10px ${getBgColor(info.types[0].type.name)}`
+        card.querySelector('.back').style.backgroundColor = getBgColor(info.types[0].type.name);
+        card.querySelector('.back').style.border = `2px solid ${getBgColor(info.types[0].type.name)}`
+        card.querySelector('.back').style.boxShadow = `0 0 10px ${getBgColor(info.types[0].type.name)}`
     })
     card.classList.remove('modelo')
     card.id = index;
@@ -154,3 +157,15 @@ const handleInfiniteScroll = () => {
     loader.remove();
     window.removeEventListener("scroll", handleInfiniteScroll);
   };
+
+
+  function flip(e) {
+    e.querySelector('.face').classList.toggle('faceflip')
+    e.querySelector('.back').classList.toggle('backflip')
+    // window.setTimeout(() => {
+    //     e.querySelector('.face').classList.toggle('faceflipped')
+    //     e.querySelector('.back').classList.toggle('backflipped')
+    //     e.querySelector('.face').classList.toggle('faceflip')
+    //     e.querySelector('.back').classList.toggle('backflip')
+    // }, 400)
+  }
