@@ -1,6 +1,8 @@
+
+
 const cardContainer = document.getElementById("pokelist");
 
-const cardLimit = 150;
+const cardLimit = 300;
 
 const cardIncrease = 15;
 
@@ -82,18 +84,29 @@ const createCard = (index, pokemon) => {
     fetch(pokemon.url)
     .then(result => result.json())
     .then(info => {
-        card.querySelector('.face').querySelector('img').src = info.sprites.front_default
+        card.querySelector('.face').querySelector('#pokeimg').src = info.sprites.front_default
         card.querySelector('.face').style.backgroundColor = getBgColor(info.types[0].type.name);
         card.querySelector('.face').style.border = `2px solid ${getBgColor(info.types[0].type.name)}`
         card.querySelector('.face').style.boxShadow = `0 0 10px ${getBgColor(info.types[0].type.name)}`
         card.querySelector('.back').style.backgroundColor = getBgColor(info.types[0].type.name);
         card.querySelector('.back').style.border = `2px solid ${getBgColor(info.types[0].type.name)}`
         card.querySelector('.back').style.boxShadow = `0 0 10px ${getBgColor(info.types[0].type.name)}`
+        // info.abilities.forEach(a =>{
+        //     console.log(a)
+        //     let span = document.createElement('span')
+        //     span.innerHTML = a.ability.name
+        //     card.querySelector('.abilities').appendChild(span)
+        // })
+        card.querySelector('.back') = `0 0 10px ${getBgColor(info.types[0].type.name)}`
+        card.querySelector('.typeImg').src = `./poketypes/${info.types[0].type.name}.png`
+        card.querySelector('#height').innerHTML = `${info.height * 10} cm`
+        card.querySelector('#weight').innerHTML = `${info.weight / 10} kg`
     })
     card.classList.remove('modelo')
     card.id = index;
     
-    card.querySelector("#pokename").innerHTML = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)
+    card.querySelector('.face').querySelector("#pokename").innerHTML = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)
+    card.querySelector('.back').querySelector("#pokename").innerHTML = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)
     cardContainer.appendChild(card);
 };
 
@@ -112,7 +125,7 @@ const addCards = (pageIndex) => {
                 createCard(indice, pokemon)
             })
         })
-    } else if (currentPage == 10) {
+    } else if (currentPage == 20) {
         removeInfiniteScroll()
     } else {
         fetch(lista.next)
@@ -160,12 +173,26 @@ const handleInfiniteScroll = () => {
 
 
   function flip(e) {
-    e.querySelector('.face').classList.toggle('faceflip')
-    e.querySelector('.back').classList.toggle('backflip')
-    // window.setTimeout(() => {
-    //     e.querySelector('.face').classList.toggle('faceflipped')
-    //     e.querySelector('.back').classList.toggle('backflipped')
-    //     e.querySelector('.face').classList.toggle('faceflip')
-    //     e.querySelector('.back').classList.toggle('backflip')
-    // }, 400)
+    if (e.querySelector('.face').classList.contains('faceflipped')) {
+        e.querySelector('.face').classList.remove('faceflipped')
+        e.querySelector('.back').classList.remove('backflipped')
+        e.querySelector('.face').classList.remove('faceflip')
+        e.querySelector('.back').classList.remove('backflip')
+        e.querySelector('.face').classList.add('faceunflip')
+        e.querySelector('.back').classList.add('backunflip')
+        window.setTimeout(() => {
+            e.querySelector('.face').classList.remove('faceunflip')
+            e.querySelector('.back').classList.remove('backunflip')
+        }, 400)
+    }else{
+        e.querySelector('.face').classList.toggle('faceflip')
+        e.querySelector('.back').classList.toggle('backflip')
+        window.setTimeout(() => {
+            e.querySelector('.face').classList.add('faceflipped')
+            e.querySelector('.back').classList.add('backflipped')
+            e.querySelector('.face').classList.remove('faceflip')
+            e.querySelector('.back').classList.remove('backflip')
+        }, 400)
+    }
+    
   }

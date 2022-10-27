@@ -8,15 +8,32 @@
     <title>Pokédex - Home</title>
 </head>
 <body>
+    <span id="result"></span>
     <div class="page">
         <div id="pokelist" class="pokelist">
             <div class="pokelist-i modelo" onclick="flip(this)">
                 <div class="face">
+                    <img class="typeImg" src="./poketypes/normal.png" alt="">
                     <img class="pokeimg" id="pokeimg" src="./placeholder.png" alt="">
                     <span id="pokename">Bubanaro</span>
                 </div>
                 <div class="back">
-                    <span>AAAAAAAAAAA</span>
+                    <span id="pokename">AAAAAAAAAAA</span>
+                    
+                    <div class="pokeControl">
+                        <span class="controlLabel">Altura:</span>
+                        <span id="height"></span>
+                    </div>
+                    <div class="pokeControl">
+                        <span class="controlLabel">Peso:</span>
+                        <span id="weight"></span>
+                    </div>
+                    <div class="pokeControlAb">
+                        <span>Habilidades</span>
+                        <div class="abilities">
+                            
+                        </div>
+                    </div>
                 </div>
                 
             </div>
@@ -25,7 +42,7 @@
             <div class="skeleton-card"></div>
           </div>
     </div>
-    
     <script src="script.js"></script>
+    
 </body>
 </html>

@@ -72,26 +72,25 @@ html, body{
 }
 
 .faceunflip{
-  animation-name: flipFront;
-  animation-duration: .2s;
-  animation-fill-mode: backwards;
-  animation-timing-function: ease-in;
-}
-
-.backunflip{
-  animation-name: flipBack;
-  animation-duration: .2s;
-  animation-delay: .2s;
-  animation-fill-mode: backwards;
+  animation-name: unflipFront;
+  animation-duration: .4s;
+  animation-fill-mode: forwards;
   animation-timing-function: ease-out;
 }
 
-.backflipped{
-  transform: rotateY(90deg);
+.backunflip{
+  animation-name: unflipBack;
+  animation-duration: .2s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in;
 }
 
-.frontflipped{
-  transform: rotateY(0deg);
+.backflipped{
+  transform: rotateY(0deg)!important;
+}
+
+.faceflipped{
+  transform: rotateY(90deg)!important;
 }
 
 #pokeimg{
@@ -101,6 +100,7 @@ html, body{
 
 #pokename{
     font-size: 18pt;
+    font-weight: 500;
     padding: 5px 0;
 }
 
@@ -124,6 +124,41 @@ html, body{
     animation-iteration-count: infinite;
   }
    
+  .back>#pokename{
+    margin-bottom: 20px;
+  }
+
+  .pokeControlAb{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 14pt;
+    font-weight: 500;
+  }
+
+  .pokeControl{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .typeImg{
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+  .abilities{
+    display: flex;
+    font-size: 12pt;
+    font-weight: 400;
+    gap: 10px;
+  }
+
   @keyframes load {
     100% {
       transform: rotateZ(360deg);
@@ -135,8 +170,30 @@ html, body{
       transform: rotateY(-90deg);
     }
   }
+
   @keyframes flipBack {
     100%{
       transform: rotateY(0deg);
+    }
+  }
+
+  @keyframes unflipFront {
+    0%{
+      transform: rotateY(-90deg);
+    }
+    50%{
+      transform: rotateY(-90deg);
+    }
+    100%{
+      transform: rotateY(0deg);
+    }
+  }
+
+  @keyframes unflipBack {
+    0%{
+      transform: rotateY(0deg);
+    }
+    100%{
+      transform: rotateY(90deg);
     }
   }
