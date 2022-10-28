@@ -91,13 +91,12 @@ const createCard = (index, pokemon) => {
         card.querySelector('.back').style.backgroundColor = getBgColor(info.types[0].type.name);
         card.querySelector('.back').style.border = `2px solid ${getBgColor(info.types[0].type.name)}`
         card.querySelector('.back').style.boxShadow = `0 0 10px ${getBgColor(info.types[0].type.name)}`
-        // info.abilities.forEach(a =>{
-        //     console.log(a)
-        //     let span = document.createElement('span')
-        //     span.innerHTML = a.ability.name
-        //     card.querySelector('.abilities').appendChild(span)
-        // })
-        card.querySelector('.back') = `0 0 10px ${getBgColor(info.types[0].type.name)}`
+        info.abilities.forEach(a =>{
+            console.log(a)
+            let span = document.createElement('span')
+            span.innerHTML = a.ability.name
+            card.querySelector('.abilities').appendChild(span)
+        })
         card.querySelector('.typeImg').src = `./poketypes/${info.types[0].type.name}.png`
         card.querySelector('#height').innerHTML = `${info.height * 10} cm`
         card.querySelector('#weight').innerHTML = `${info.weight / 10} kg`
