@@ -40,6 +40,9 @@ html, body{
   backface-visibility: hidden;
   width: 250px;
   height: 300px;
+  position: relative;
+  justify-content: center;
+  image-rendering: pixelated;
 }
 
 .back{
@@ -96,13 +99,19 @@ html, body{
 }
 
 #pokeimg{
-    image-rendering: pixelated;
+    transform: scale(2.5);
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, .5));
 }
 
 #pokename{
     font-size: 18pt;
     font-weight: 500;
     padding: 5px 0;
+}
+
+.face>#pokename{
+  position: absolute;
+    top: 20px;
 }
 
 .modelo{

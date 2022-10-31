@@ -84,23 +84,34 @@ const createCard = (index, pokemon) => {
     fetch(pokemon.url)
     .then(result => result.json())
     .then(info => {
+        card.querySelector('.face').querySelector('#pokeimg').src = info.sprites.versions['generation-v']['black-white'].animated.front_default                
+        // card.querySelector('.face').querySelector('#pokeimg').setAttribute('height', '120%')
+        // card.querySelector('.face').querySelector('#pokeimg').setAttribute('width', '120%')
         
-        card.querySelector('.face').querySelector('#pokeimg').setAttribute('rel:animated_src', info.sprites.versions['generation-v']['black-white'].animated.front_default)
-        var gif = new SuperGif({ gif: card.querySelector('#pokeimg') });
-        gif.load()
+        // let gwidth = card.querySelector('#pokeimg').naturalWidth
+        // let gheight = card.querySelector('#pokeimg').naturalHeight
+
+        // console.log('w', gwidth)
+        // console.log('h', gheight)
+
+        // card.querySelector('.face').querySelector('#pokeimg').setAttribute('width', `${gwidth * 220 / 100}`)
+        // card.querySelector('.face').querySelector('#pokeimg').setAttribute('height', `${gheight * 220 / 100}`)
         
-        card.querySelector('.face').querySelector('#pokeimg').style.width = `${96 * 265.63 / 100}px`
-        card.querySelector('.face').querySelector('#pokeimg').style.height = `${96 * 265.63 / 100}px`
-        card.querySelector('.face').addEventListener('mouseenter', () => {
-            card.querySelector('.face').querySelector('#pokeimg').src = info.sprites.versions['generation-v']['black-white'].animated.front_default;
-            card.querySelector('.face').querySelector('#pokeimg').style.width = `${(10* (info.height + 3))}px`
-            card.querySelector('.face').querySelector('#pokeimg').style.height = `auto`
-        })
-        card.querySelector('.face').addEventListener('mouseleave', () => {
-            card.querySelector('.face').querySelector('#pokeimg').src = info.sprites.versions['generation-v']['black-white'].front_default;
-            card.querySelector('.face').querySelector('#pokeimg').style.width = `${96 * 265.63 / 100}px`
-            card.querySelector('.face').querySelector('#pokeimg').style.height = `${96 * 265.63 / 100}px`
-        })
+        // var gif = new SuperGif({ gif: card.querySelector('#pokeimg'), progressbar_height: 0 });
+        // gif.load()
+
+        // card.querySelector('.face').querySelector('canvas').setAttribute('width', `${width * 220 / 100}`)
+        // card.querySelector('.face').querySelector('canvas').setAttribute('height', `${height * 220 / 100}`)
+        // card.querySelector('.face').addEventListener('mouseenter', () => {
+        //     card.querySelector('.face').querySelector('#pokeimg').src = info.sprites.versions['generation-v']['black-white'].animated.front_default;
+        //     card.querySelector('.face').querySelector('#pokeimg').style.width = `${(10* (info.height + 3))}px`
+        //     card.querySelector('.face').querySelector('#pokeimg').style.height = `auto`
+        // })
+        // card.querySelector('.face').addEventListener('mouseleave', () => {
+        //     card.querySelector('.face').querySelector('#pokeimg').src = info.sprites.versions['generation-v']['black-white'].front_default;
+        //     card.querySelector('.face').querySelector('#pokeimg').style.width = `${96 * 265.63 / 100}px`
+        //     card.querySelector('.face').querySelector('#pokeimg').style.height = `${96 * 265.63 / 100}px`
+        // })
         
         card.querySelector('.face').style.backgroundColor = getBgColor(info.types[0].type.name);
         card.querySelector('.face').style.border = `2px solid ${getBgColor(info.types[0].type.name)}`
@@ -109,13 +120,11 @@ const createCard = (index, pokemon) => {
         card.querySelector('.back').style.border = `2px solid ${getBgColor(info.types[0].type.name)}`
         card.querySelector('.back').style.boxShadow = `0 0 10px ${getBgColor(info.types[0].type.name)}`
         info.abilities.forEach(a =>{
-            console.log(a)
             let span = document.createElement('span')
             span.innerHTML = a.ability.name
             card.querySelector('.abilities').appendChild(span)
         })
         info.types.forEach(t =>{
-            console.log(t)
             let span = document.createElement('span')
             span.innerHTML = t.type.name
             card.querySelector('.types').appendChild(span)
@@ -154,7 +163,6 @@ const addCards = (pageIndex) => {
         .then(response => response.json())
         .then(data => {
             lista = data
-            console.log(lista)
             lista.results.forEach((pokemon, indice) => {
                 createCard(indice, pokemon)
             })
@@ -218,9 +226,3 @@ const handleInfiniteScroll = () => {
     }
     
   }
-
-  function getMeta(url, callback) {
-    const img = new Image();
-    img.src = url;
-    img.onload = function() { callback(this.width, this.height); }
-}
