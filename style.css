@@ -38,6 +38,8 @@ html, body{
   border-radius: 10px;
   transform-style: preserve-3d;
   backface-visibility: hidden;
+  width: 250px;
+  height: 300px;
 }
 
 .back{
@@ -48,12 +50,12 @@ html, body{
   position: absolute;
   top: 0;
   left: 0;
-  height: 100%;
-  width: 100%;
   background-color: aqua;
   transform: rotateY(90deg);
   transform-style: preserve-3d;
   backface-visibility: hidden;
+  width: 250px;
+  height: 300px;
 }
 
 .faceflip{
@@ -95,7 +97,6 @@ html, body{
 
 #pokeimg{
     image-rendering: pixelated;
-    height: 250px;
 }
 
 #pokename{
@@ -125,14 +126,23 @@ html, body{
   }
    
   .back>#pokename{
-    margin-bottom: 20px;
+    margin-bottom: 5px;
   }
 
   .pokeControlAb{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 5px;
+    font-size: 14pt;
+    font-weight: 500;
+  }
+
+  .pokeControlTy{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5px;
     font-size: 14pt;
     font-weight: 500;
   }
@@ -157,6 +167,29 @@ html, body{
     font-size: 12pt;
     font-weight: 400;
     gap: 10px;
+  }
+
+  .types{
+    display: flex;
+    font-size: 12pt;
+    font-weight: 400;
+    gap: 10px;
+  }
+
+  .btn-card{
+    background-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, .7);
+    padding: 5px 15px;
+    font-size: 16pt;
+    border: 1px solid rgba(0, 0, 0, .7);
+    border-radius: 5px;
+    position: absolute;
+    bottom: 15px;
+  }
+
+  .btn-card>span{
+    filter: contrast(200%);
+    filter: brightness(0.5);
   }
 
   @keyframes load {

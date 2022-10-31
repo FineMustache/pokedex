@@ -14,7 +14,7 @@
             <div class="pokelist-i modelo" onclick="flip(this)">
                 <div class="face">
                     <img class="typeImg" src="./poketypes/normal.png" alt="">
-                    <img class="pokeimg" id="pokeimg" src="./placeholder.png" alt="">
+                    <img class="pokeimg" id="pokeimg" src="./placeholder.png" rel:auto_play="0" alt="">
                     <span id="pokename">Bubanaro</span>
                 </div>
                 <div class="back">
@@ -28,11 +28,18 @@
                         <span class="controlLabel">Peso:</span>
                         <span id="weight"></span>
                     </div>
+                    <div class="pokeControlTy">
+                        <span class="controlLabel">Tipos:</span>
+                        <div class="types">
+
+                        </div>
+                    </div>
                     <div class="pokeControlAb">
                         <span>Habilidades</span>
                         <div class="abilities">
                             
                         </div>
+                        <button class="btn-card"><span>VER MAIS</span></button>
                     </div>
                 </div>
                 
@@ -42,6 +49,7 @@
             <div class="skeleton-card"></div>
           </div>
     </div>
+    <script type="text/javascript" src="./libgif.js"></script>
     <script src="script.js"></script>
     
 </body>
