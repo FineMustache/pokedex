@@ -77,6 +77,67 @@ const getBgColor = (type) => {
             return("red")
     }
 };
+
+const getTTColor = (type) => {
+    switch (type) {
+        case 'normal':
+            return('#979693')
+        
+        case 'fighting':
+            return('#d87b47')
+
+        case 'flying':
+            return('#5884ef')
+        
+        case 'poison':
+            return('#83539b')
+
+        case 'ground':
+            return('#9b5e3f')
+
+        case 'rock':
+            return('#a38e7a')
+
+        case 'bug':
+            return('#9fb658')
+
+        case 'ghost':
+            return('#a3739b')
+
+        case 'steel':
+            return('#7e889b')
+
+        case 'fire':
+            return('#dc4047')
+
+        case 'water':
+            return('#54b9e3')
+
+        case 'grass':
+            return('#43a04c')
+
+        case 'electric':
+            return("#dcb602")
+        
+        case 'psychic':
+            return("#e86e9b")
+
+        case 'ice':
+            return("#6db6bb")
+
+        case 'dragon':
+            return("#0786a3")
+
+        case 'dark':
+            return("#545361")
+
+        case 'fairy':
+            return("#ef9cb7")
+
+        default:
+            return("red")
+    }
+};
    
 const createCard = (index, pokemon) => {
     
@@ -85,33 +146,6 @@ const createCard = (index, pokemon) => {
     .then(result => result.json())
     .then(info => {
         card.querySelector('.face').querySelector('#pokeimg').src = info.sprites.versions['generation-v']['black-white'].animated.front_default                
-        // card.querySelector('.face').querySelector('#pokeimg').setAttribute('height', '120%')
-        // card.querySelector('.face').querySelector('#pokeimg').setAttribute('width', '120%')
-        
-        // let gwidth = card.querySelector('#pokeimg').naturalWidth
-        // let gheight = card.querySelector('#pokeimg').naturalHeight
-
-        // console.log('w', gwidth)
-        // console.log('h', gheight)
-
-        // card.querySelector('.face').querySelector('#pokeimg').setAttribute('width', `${gwidth * 220 / 100}`)
-        // card.querySelector('.face').querySelector('#pokeimg').setAttribute('height', `${gheight * 220 / 100}`)
-        
-        // var gif = new SuperGif({ gif: card.querySelector('#pokeimg'), progressbar_height: 0 });
-        // gif.load()
-
-        // card.querySelector('.face').querySelector('canvas').setAttribute('width', `${width * 220 / 100}`)
-        // card.querySelector('.face').querySelector('canvas').setAttribute('height', `${height * 220 / 100}`)
-        // card.querySelector('.face').addEventListener('mouseenter', () => {
-        //     card.querySelector('.face').querySelector('#pokeimg').src = info.sprites.versions['generation-v']['black-white'].animated.front_default;
-        //     card.querySelector('.face').querySelector('#pokeimg').style.width = `${(10* (info.height + 3))}px`
-        //     card.querySelector('.face').querySelector('#pokeimg').style.height = `auto`
-        // })
-        // card.querySelector('.face').addEventListener('mouseleave', () => {
-        //     card.querySelector('.face').querySelector('#pokeimg').src = info.sprites.versions['generation-v']['black-white'].front_default;
-        //     card.querySelector('.face').querySelector('#pokeimg').style.width = `${96 * 265.63 / 100}px`
-        //     card.querySelector('.face').querySelector('#pokeimg').style.height = `${96 * 265.63 / 100}px`
-        // })
         
         card.querySelector('.face').style.backgroundColor = getBgColor(info.types[0].type.name);
         card.querySelector('.face').style.border = `2px solid ${getBgColor(info.types[0].type.name)}`
@@ -124,10 +158,24 @@ const createCard = (index, pokemon) => {
             span.innerHTML = a.ability.name
             card.querySelector('.abilities').appendChild(span)
         })
-        info.types.forEach(t =>{
-            let span = document.createElement('span')
-            span.innerHTML = t.type.name
-            card.querySelector('.types').appendChild(span)
+        info.types.forEach((t, ind) =>{
+            let img = document.createElement('img')
+            img.src = "./poketypes/" + t.type.name + '.png'
+            img.classList.add('back-type')
+            let typename = document.createElement("div")
+            typename.innerHTML = "<span>" + t.type.name + "</span>"
+            if (ind == 0) {
+                typename.classList.add('tooltip-l')
+            } else {
+                typename.classList.add('tooltip-r')
+            }
+            
+            typename.style.backgroundColor = getTTColor(t.type.name)
+            let div = document.createElement('div')
+            div.classList.add('types-i')
+            div.append(img, typename)
+            div.style.zIndex = info.types.length - ind
+            card.querySelector('.types').appendChild(div)
         })
         card.querySelector('.typeImg').src = `./poketypes/${info.types[0].type.name}.png`
         card.querySelector('.btn-card').style.color = `${getBgColor(info.types[0].type.name)}`
@@ -225,4 +273,29 @@ const handleInfiniteScroll = () => {
         }, 400)
     }
     
+  }
+
+  function inputFocus() {
+    document.querySelector(".search-border-focus").style.width = '300px'
+  }
+
+  function inputFocusOut() {
+    document.querySelector(".search-border-focus").style.width = '0'
+  }
+
+  function inputChange(e) {
+    let letras = e.value.length
+    if(letras == 0) document.querySelector(".search-border-focus").style.width = `0`;
+    else document.querySelector(".search-border-focus").style.width = `calc(10px + ${letras*16}pt)`
+
+    if (letras >= 15) {
+        document.querySelector(".search-border-focus").style.backgroundColor = `red`;
+    } else {
+        document.querySelector(".search-border-focus").style.backgroundColor = `black`;
+    }
+    
+    if (letras !== 0) {
+        
+    }
+
   }

@@ -8,7 +8,13 @@
     <title>Pokédex - Home</title>
 </head>
 <body>
-    <span id="result"></span>
+    <header>
+        <nav>
+            <input onkeyup="inputChange(this)" type="text" id="search" placeholder="PROCURAR" autocomplete="off">
+            <div class="search-border"></div>
+            <div class="search-border-focus"></div>
+        </nav>
+    </header>
     <div class="page">
         <div id="pokelist" class="pokelist">
             <div class="pokelist-i modelo" onclick="flip(this)">
@@ -46,11 +52,13 @@
                 
             </div>
         </div>
+        <div class="pokelist search-list modelo">
+            AAAAAA
+        </div>
         <div id="loader">
             <div class="skeleton-card"></div>
-          </div>
+        </div>
     </div>
-    <script type="text/javascript" src="./libgif.js"></script>
     <script src="script.js"></script>
     
 </body>
